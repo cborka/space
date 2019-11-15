@@ -62,3 +62,6 @@ typings/
 
 
 .idea/
+
+go.bat
+#    "nodemon": "^1.19.4",
