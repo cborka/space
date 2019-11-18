@@ -27,7 +27,8 @@ app.use(session({
 
 
 //app.use(logger('dev'));
-app.use(logger(':date[iso] :method :url :status :response-time ms - :res[content-length]'));
+//app.use(logger('combined'));
+app.use(logger(':date[iso] :method :url :status :response-time ms - :res[content-length] == :referrer'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
