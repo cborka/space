@@ -25,20 +25,23 @@ app.use(session({
 }));
 
 
-
 //app.use(logger('dev'));
 //app.use(logger('combined'));
-app.use(logger(':date[iso] :method :url :status :response-time ms - :res[content-length] == :referrer'));
+app.use(logger(':date[iso] :method :url :status :response-time ms - :res[content-length] = :referrer'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
+  console.log('req.headers.origin ='+req.headers.origin+'.');
+  if (!req.headers.origin  || req.headers.origin == "http://localhost:3000" || req.headers.origin == "http://x321.ru:3000")
+  {
 //  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+    res.header("Access-Control-Allow-Origin", req.headers.origin); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  }
 });
 
 app.use('/', indexRouter);
