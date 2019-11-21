@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var session = require('express-session');
-var db = require("./db");
+//var db = require("./db");
 
 
 var indexRouter = require('./routes/index');
@@ -34,10 +34,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
-  console.log('req.headers.origin ='+req.headers.origin+'.');
-  if (!req.headers.origin  || req.headers.origin == "http://localhost:3000"
-      || req.headers.origin == "http://x321.ru:3000"
-      || req.headers.origin == "http://x321.ru"
+//  console.log('req.headers.origin ='+req.headers.origin+'.');
+  if (!req.headers.origin  || req.headers.origin === "http://localhost:3000"
+      || req.headers.origin === "http://x321.ru:3000"
+      || req.headers.origin === "http://x321.ru"
   )
   {
 //  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
