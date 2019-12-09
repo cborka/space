@@ -34,6 +34,7 @@ app.use(function (req, res, next) {
     if (!req.headers.origin
         || req.headers.origin === "http://localhost:3000"
         || req.headers.origin === "http://localhost"
+        || req.headers.origin === "http://x321.ru:8080"
         || req.headers.origin === "http://x321.ru:3000"
         || req.headers.origin === "http://x321.ru"
     ) {
